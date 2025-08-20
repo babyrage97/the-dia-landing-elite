@@ -15,12 +15,6 @@ const services = [
     features: ["Cable management", "Signal distribution", "Control systems", "Future-proof design"]
   },
   {
-    icon: Settings,
-    title: "Smart Office Solutions",
-    description: "Intelligent workplace technology that adapts to your team's collaboration needs.",
-    features: ["Automated controls", "Environmental integration", "Booking systems", "Analytics dashboard"]
-  },
-  {
     icon: Headphones,
     title: "On-site IT Support",
     description: "Expert technical support and hardware troubleshooting to keep your systems running smoothly.",

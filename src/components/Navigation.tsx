@@ -78,9 +78,7 @@ const Navigation = () => {
 
           {/* Right side - Theme Toggle and Mobile Menu */}
           <div className="flex items-center space-x-2">
-            <div className="hidden md:block">
-              <ThemeToggle />
-            </div>
+            <ThemeToggle />
             <div className="md:hidden">
               <Button
                 variant="ghost"

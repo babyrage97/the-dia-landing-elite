@@ -4,34 +4,34 @@ import { Building, MapPin, Users, CheckCircle } from "lucide-react";
 
 const projects = [
   {
-    title: "Global Banking Headquarters",
-    client: "Fortune 100 Financial Institution",
-    location: "New York, NY",
-    size: "50 Conference Rooms",
-    description: "Complete Zoom Room deployment across multiple floors with integrated calendar systems and advanced analytics.",
-    tags: ["Zoom Rooms", "Enterprise", "Analytics"],
-    status: "Completed",
-    results: "95% adoption rate, 40% reduction in meeting setup time"
+    title: "Nutanix EMEA IT Support",
+    client: "Nutanix",
+    location: "EMEA Region",
+    size: "Multi-Region Support",
+    description: "Comprehensive IT equipment and meeting room support across the entire EMEA region. Providing ongoing technical assistance and maintenance for office infrastructure.",
+    tags: ["IT Support", "Meeting Rooms", "EMEA"],
+    status: "Ongoing",
+    results: "2+ years of continuous support, reliable infrastructure management"
   },
   {
-    title: "Tech Campus Innovation Hub",
-    client: "Leading Software Company",
-    location: "San Francisco, CA",
-    size: "25 Collaboration Spaces",
-    description: "Smart office integration with environmental controls, booking systems, and wireless presentation capabilities.",
-    tags: ["Smart Office", "IoT", "Wireless"],
-    status: "Completed",
-    results: "300% increase in room utilization, seamless hybrid work"
+    title: "European Patent Office Support",
+    client: "European Patent Office",
+    location: "Munich, Germany",
+    size: "Full Office Support",
+    description: "On-site support for meetings and events, specialized Neat Bars equipment management, comprehensive IT support from laptop rollout to troubleshooting.",
+    tags: ["On-site Support", "Neat Bars", "IT Support"],
+    status: "Ongoing",
+    results: "Enhanced meeting efficiency, seamless event support, reliable IT operations"
   },
   {
-    title: "International Law Firm",
-    client: "Top-Tier Legal Practice",
-    location: "London, UK",
-    size: "30 Meeting Rooms",
-    description: "Secure video conferencing with end-to-end encryption and multi-region support for client confidentiality.",
-    tags: ["Security", "International", "Legal"],
-    status: "In Progress",
-    results: "Enhanced client confidence, global collaboration enabled"
+    title: "Lenovo Infrastructure Management",
+    client: "Lenovo",
+    location: "Enterprise Sites",
+    size: "Server & Network Infrastructure",
+    description: "Professional server rack installation, ongoing management and configuration services, plus installation and deinstallation of Access Points for network infrastructure.",
+    tags: ["Server Installation", "Configuration", "Access Points"],
+    status: "Completed",
+    results: "Optimized network performance, professional infrastructure deployment"
   }
 ];
 
