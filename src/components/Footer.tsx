@@ -1,8 +1,6 @@
 import { Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-background border-t border-border/30">
+  return <footer className="bg-background border-t border-border/30">
       <div className="container mx-auto px-4 md:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -17,25 +15,13 @@ const Footer = () => {
             
             {/* Social Links */}
             <div className="flex space-x-4">
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-luxury group"
-                aria-label="LinkedIn"
-              >
+              <a href="#" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-luxury group" aria-label="LinkedIn">
                 <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-secondary/20 hover:text-secondary transition-luxury group"
-                aria-label="Twitter"
-              >
+              <a href="#" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-secondary/20 hover:text-secondary transition-luxury group" aria-label="Twitter">
                 <Twitter className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </a>
-              <a 
-                href="mailto:info@the-dia.com" 
-                className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-luxury group"
-                aria-label="Email"
-              >
+              <a href="mailto:info@the-dia.com" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-luxury group" aria-label="Email">
                 <Mail className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </a>
             </div>
@@ -83,7 +69,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-muted-foreground">
                 <Mail className="h-4 w-4 mr-3 text-secondary flex-shrink-0" />
-                <span className="font-inter">info@the-dia.com</span>
+                <span className="font-inter">office@the-dia.com</span>
               </div>
               <div className="flex items-start text-muted-foreground">
                 <MapPin className="h-4 w-4 mr-3 text-accent flex-shrink-0 mt-1" />
@@ -116,8 +102,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
