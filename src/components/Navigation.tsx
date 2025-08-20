@@ -76,9 +76,8 @@ const Navigation = () => {
             </div>
           </div>
 
-          {/* Right side - Theme Toggle and Mobile Menu */}
+          {/* Right side - Mobile Menu */}
           <div className="flex items-center space-x-2">
-            <ThemeToggle />
             <div className="md:hidden">
               <Button
                 variant="ghost"
@@ -109,9 +108,19 @@ const Navigation = () => {
                   {item.label}
                 </button>
               ))}
+              <div className="px-3 py-2">
+                <ThemeToggle />
+              </div>
             </div>
           </div>
         )}
+      </div>
+      
+      {/* Fixed Theme Toggle - Bottom Left */}
+      <div className="fixed bottom-6 left-6 z-50 hidden md:block">
+        <div className="bg-background/95 backdrop-blur-md border border-border rounded-full p-2 shadow-lg">
+          <ThemeToggle />
+        </div>
       </div>
     </nav>
   );
