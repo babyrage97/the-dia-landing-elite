@@ -145,7 +145,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-space font-semibold text-accent">Email Us</h3>
-                    <p className="text-muted-foreground font-inter">info@the-dia.com</p>
+                    <p className="text-muted-foreground font-inter">office@the.dia.com</p>
                   </div>
                 </div>
               </CardContent>
@@ -174,8 +174,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-space font-semibold text-accent">Visit Us</h3>
                     <p className="text-muted-foreground font-inter">
-                      123 Tech Plaza, Suite 456<br />
-                      Silicon Valley, CA 94025
+                      Dubai
                     </p>
                   </div>
                 </div>
