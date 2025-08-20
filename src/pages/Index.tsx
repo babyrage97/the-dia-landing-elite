@@ -4,14 +4,12 @@ import Projects from "@/components/Projects";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ThemeToggle from "@/components/ThemeToggle";
 import Navigation from "@/components/Navigation";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <ThemeToggle />
       <div id="home">
         <Hero />
       </div>

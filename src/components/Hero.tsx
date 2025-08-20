@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import Diamond3D from "@/components/Diamond3D";
 
 const Hero = () => {
   return (
@@ -21,8 +22,11 @@ const Hero = () => {
       
       <div className="container relative z-10 px-4 md:px-8">
         <div className="max-w-4xl mx-auto text-center animate-fade-up">
-          {/* Logo/Brand */}
-          <div className="mb-8">
+          {/* Logo/Brand with 3D Diamond */}
+          <div className="mb-8 flex flex-col items-center">
+            <div className="mb-4">
+              <Diamond3D />
+            </div>
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
             </h1>
@@ -41,23 +45,14 @@ const Hero = () => {
             smart office infrastructure, and international service delivery.
           </p>
           
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* CTA Button */}
+          <div className="flex justify-center">
             <Button 
               size="lg" 
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group px-8 py-6 text-lg font-medium"
             >
               Explore Our Services
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="border-2 border-accent/20 text-accent hover:bg-accent/10 transition-luxury group px-8 py-6 text-lg font-medium"
-            >
-              <Play className="mr-2 h-5 w-5" />
-              Watch Demo
             </Button>
           </div>
           
@@ -67,8 +62,8 @@ const Hero = () => {
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               <span className="text-accent font-space font-medium">CHBC</span>
               <span className="text-accent font-space font-medium">Nutanix</span>
-              <span className="text-accent font-space font-medium">Zoom</span>
-              <span className="text-accent font-space font-medium">Microsoft</span>
+              <span className="text-accent font-space font-medium">Lenovo</span>
+              <span className="text-accent font-space font-medium">European Patent Office</span>
             </div>
           </div>
         </div>
