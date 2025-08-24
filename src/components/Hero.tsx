@@ -66,6 +66,7 @@ const Hero = () => {
           >
             <Button 
               size="lg" 
+              href: '#services'
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group px-8 py-6 text-lg font-medium"
             >
               Explore Our Services
