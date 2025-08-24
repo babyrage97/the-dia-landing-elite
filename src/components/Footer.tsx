@@ -1,6 +1,9 @@
 import { Linkedin, Twitter, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom"; // DODATO - importovanje Link komponente
+
 const Footer = () => {
-  return <footer className="bg-background border-t border-border/30">
+  return (
+    <footer className="bg-background border-t border-border/30">
       <div className="container mx-auto px-4 md:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -40,11 +43,11 @@ const Footer = () => {
                 <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
                   AV Infrastructure
                 </a>
-               </li>
-               <li>
-                 <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
-                   On-site IT Support
-                 </a>
+              </li>
+              <li>
+                <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
+                  On-site IT Support
+                </a>
               </li>
               <li>
                 <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
@@ -80,30 +83,33 @@ const Footer = () => {
         <div className="border-t border-border/30 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-muted-foreground font-inter text-sm">
-  © 2025{' '}
-  <a 
-    href="https://withoutco.de" 
-    target="_blank" 
-    rel="noopener noreferrer"
-    className="text-primary hover:text-accent underline-offset-4 hover:underline transition-all duration-200"
-  >
-    withoutco.de
-  </a>{' '}
-  All rights reserved.
-              </p>
-<div className="flex space-x-4">
-  <Link to="/privacy-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
-    Privacy Policy
-  </Link>
-  <Link to="/terms-of-service" className="text-muted-foreground hover:text-[#FFD700] transition-colors">  
-    Terms of Service
-  </Link>
-  <Link to="/cookie-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
-    Cookie Policy
-  </Link>
+              © 2025{' '}
+              <a 
+                href="https://withoutco.de" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:text-accent underline-offset-4 hover:underline transition-all duration-200"
+              >
+                withoutco.de
+              </a>{' '}
+              All rights reserved.
+            </p>
+            <div className="flex space-x-4">
+              <Link to="/privacy-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms-of-service" className="text-muted-foreground hover:text-[#FFD700] transition-colors">  
+                Terms of Service
+              </Link>
+              <Link to="/cookie-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
+                Cookie Policy
+              </Link>
+            </div>
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 };
+
 export default Footer;
