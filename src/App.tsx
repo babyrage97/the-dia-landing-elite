@@ -4,9 +4,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import Layout from "./components/Layout"; // Dodaj Layout
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+
+// Import samo postojeće komponente
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
 import TermsOfService from "./components/legal/TermsOfService";
 import CookiePolicy from "./components/legal/CookiePolicy";
@@ -21,15 +22,13 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            {/* Home bez Layout-a */}
             <Route path="/" element={<Index />} />
             
-            {/* Legal stranice sa Layout-om */}
-            <Route path="/privacy-policy" element={<Layout><PrivacyPolicy /></Layout>} />
-            <Route path="/terms-of-service" element={<Layout><TermsOfService /></Layout>} />
-            <Route path="/cookie-policy" element={<Layout><CookiePolicy /></Layout>} />
-
-            {/* 404 bez Layout-a da bude clean */}
+            {/* Legal stranice */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
