@@ -5,17 +5,35 @@ const TermsOfService = () => {
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent">
-              Terms of Service
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            The terms and conditions governing our professional AV & IT infrastructure services.
-          </p>
-          <div className="mt-6 text-sm text-muted-foreground">
-            Last updated: {new Date().toLocaleDateString()}
+        <div className="max-w-6xl mx-auto">
+          {/* Back Button */}
+          <div className="mb-8">
+            <button
+              onClick={() => window.location.href = '/'}
+              className="inline-flex items-center gap-3 text-muted-foreground hover:text-[#FFD700] transition-colors group"
+            >
+              <div className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center group-hover:bg-[#FFD700]/20 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </div>
+              <span className="font-medium">Back to Home</span>
+            </button>
+          </div>
+          
+          {/* Title Section */}
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent">
+                Terms of Service
+              </span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              The terms and conditions governing our professional AV & IT infrastructure services.
+            </p>
+            <div className="mt-6 text-sm text-muted-foreground">
+              Last updated: {new Date().toLocaleDateString()}
+            </div>
           </div>
         </div>
       </section>
@@ -175,75 +193,6 @@ const TermsOfService = () => {
             </div>
           </div>
 
-          {/* Warranties and Limitations */}
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <div className="w-2 h-8 bg-gradient-to-b from-[#FFD700] to-[#B8860B] rounded-full"></div>
-              Warranties & Limitations
-            </h2>
-            
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-[#FFD700]">Service Warranties</h3>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-muted/20 rounded-lg border border-border/30 text-center">
-                    <div className="w-12 h-12 bg-[#FFD700]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <span className="text-[#FFD700] text-xl font-bold">12</span>
-                    </div>
-                    <h4 className="font-medium mb-2">Installation Work</h4>
-                    <p className="text-muted-foreground text-sm">12 months warranty on all installation services</p>
-                  </div>
-                  <div className="p-4 bg-muted/20 rounded-lg border border-border/30 text-center">
-                    <div className="w-12 h-12 bg-[#FFD700]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <span className="text-[#FFD700] text-xl font-bold">90</span>
-                    </div>
-                    <h4 className="font-medium mb-2">Configuration</h4>
-                    <p className="text-muted-foreground text-sm">90 days warranty on setup and configuration</p>
-                  </div>
-                  <div className="p-4 bg-muted/20 rounded-lg border border-border/30 text-center">
-                    <div className="w-12 h-12 bg-[#FFD700]/20 rounded-lg flex items-center justify-center mx-auto mb-3">
-                      <span className="text-[#FFD700] text-xl font-bold">24/7</span>
-                    </div>
-                    <h4 className="font-medium mb-2">Support Response</h4>
-                    <p className="text-muted-foreground text-sm">Response times as specified in agreements</p>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-[#FFD700]">Liability Limitations</h3>
-                <div className="bg-muted/30 p-6 rounded-xl border border-border/30">
-                  <p className="text-muted-foreground mb-4">
-                    To the maximum extent permitted by law, The-Dia's liability is limited to the amount paid 
-                    for the specific service giving rise to the claim. We are not liable for:
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <ul className="space-y-2 text-muted-foreground text-sm">
-                      <li className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 flex-shrink-0"></div>
-                        Indirect, consequential, or punitive damages
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 flex-shrink-0"></div>
-                        Loss of profits, data, or business opportunities
-                      </li>
-                    </ul>
-                    <ul className="space-y-2 text-muted-foreground text-sm">
-                      <li className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 flex-shrink-0"></div>
-                        Third-party equipment failures or software issues
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <div className="w-1.5 h-1.5 bg-[#FFD700] rounded-full mt-2 flex-shrink-0"></div>
-                        Force majeure events beyond reasonable control
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Contact Section */}
           <div className="bg-gradient-to-r from-card/50 to-card/30 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
             <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
@@ -301,6 +250,28 @@ const TermsOfService = () => {
 
         </div>
       </section>
+      
+      {/* Floating Back Button */}
+      <button
+        onClick={() => window.location.href = '/'}
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center group"
+        aria-label="Back to Home"
+      >
+        <svg 
+          className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform duration-200" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        
+        {/* Tooltip */}
+        <div className="absolute right-full mr-3 px-3 py-2 bg-foreground text-background text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          Back to Home
+          <div className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-foreground"></div>
+        </div>
+      </button>
     </div>
   );
 };
