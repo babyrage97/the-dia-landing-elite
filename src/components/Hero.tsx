@@ -4,6 +4,14 @@ import heroImage from "@/assets/hero-image.jpg";
 import { motion } from "framer-motion";
 
 const Hero = () => {
+  // Funkcija za smooth scroll na services sekciju
+  const handleExploreServices = () => {
+    const element = document.querySelector('#services');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center hero-gradient overflow-hidden">
       {/* Background Image with Overlay */}
@@ -57,7 +65,7 @@ const Hero = () => {
             and international service delivery.
           </motion.p>
           
-          {/* CTA Button */}
+          {/* CTA Button - ISPRAVLJEN */}
           <motion.div 
             className="flex justify-center"
             initial={{ opacity: 0, y: 30 }}
@@ -66,7 +74,7 @@ const Hero = () => {
           >
             <Button 
               size="lg" 
-              href="#services"
+              onClick={handleExploreServices}
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group px-8 py-6 text-lg font-medium"
             >
               Explore Our Services
