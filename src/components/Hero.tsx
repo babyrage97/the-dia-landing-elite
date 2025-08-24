@@ -25,15 +25,15 @@ const Hero = () => {
       <div className="absolute bottom-40 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       
       <div className="container relative z-10 px-4 md:px-8">
-        {/* Pomeren sadržaj malo desno zbog dijamanta */}
+        {/* Tekst ostaje centriran */}
         <motion.div 
-          className="max-w-4xl mx-auto text-center md:ml-auto md:mr-0 md:text-left md:pl-80"
+          className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           {/* Logo/Brand */}
-          <div className="mb-8 flex flex-col items-center md:items-start">
+          <div className="mb-8 flex flex-col items-center">
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
             </h1>
@@ -53,7 +53,7 @@ const Hero = () => {
           
           {/* Description */}
           <motion.p 
-            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto md:mx-0 font-inter leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-inter leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -64,7 +64,7 @@ const Hero = () => {
           
           {/* CTA Button */}
           <motion.div 
-            className="flex justify-center md:justify-start"
+            className="flex justify-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
