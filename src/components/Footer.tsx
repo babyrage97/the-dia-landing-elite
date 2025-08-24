@@ -90,18 +90,17 @@ const Footer = () => {
     withoutco.de
   </a>{' '}
   All rights reserved.
-</p>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
-                Privacy Policy
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
-                Terms of Service
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
-                Cookie Policy
-              </a>
-            </div>
+<div className="flex space-x-4">
+  <Link to="/privacy-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
+    Privacy Policy
+  </Link>
+  <Link to="/terms-of-service" className="text-muted-foreground hover:text-[#FFD700] transition-colors">  
+    Terms of Service
+  </Link>
+  <Link to="/cookie-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
+    Cookie Policy
+  </Link>
+</div>
           </div>
         </div>
       </div>
