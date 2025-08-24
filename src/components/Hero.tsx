@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import { motion } from "framer-motion";
-import ScrollDiamond3D from "@/components/ScrollDiamond3D";
 
 const Hero = () => {
   return (
@@ -17,15 +16,11 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       </div>
       
-      {/* Veliki 3D dijamant na levoj strani - okreće se pri scroll-u */}
-      <ScrollDiamond3D />
-      
       {/* Floating Elements */}
       <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-40 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute bottom-40 left-10 w-24 h-24 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       
       <div className="container relative z-10 px-4 md:px-8">
-        {/* Tekst ostaje centriran */}
         <motion.div 
           className="max-w-4xl mx-auto text-center"
           initial={{ opacity: 0, y: 50 }}
@@ -37,7 +32,7 @@ const Hero = () => {
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
             </h1>
-            <div className="w-24 h-1 bg-primary rounded-full shadow-glow" />
+            <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-glow" />
           </div>
           
           {/* Tagline */}
@@ -80,13 +75,13 @@ const Hero = () => {
           
           {/* Trust Indicators */}
           <motion.div 
-            className="mt-16 text-center md:text-left"
+            className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
             <p className="text-sm text-muted-foreground mb-4 font-inter">Trusted by leading organizations</p>
-            <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 opacity-60">
+            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               <span className="text-accent font-space font-medium">CHBC</span>
               <span className="text-accent font-space font-medium">Nutanix</span>
               <span className="text-accent font-space font-medium">Lenovo</span>
