@@ -18,10 +18,10 @@ const Footer = () => {
             
             {/* Social Links */}
             <div className="flex space-x-4">
-              <a href="www.linkedin.com" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-luxury group" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-luxury group" aria-label="LinkedIn">
                 <Linkedin className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </a>
-              <a href="www.twitter.com" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-secondary/20 hover:text-secondary transition-luxury group" aria-label="Twitter">
+              <a href="https://www.twitter.com" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-secondary/20 hover:text-secondary transition-luxury group" aria-label="Twitter">
                 <Twitter className="h-5 w-5 group-hover:scale-110 transition-transform" />
               </a>
               <a href="mailto:office@the-dia.com" className="w-10 h-10 bg-muted/30 rounded-full flex items-center justify-center hover:bg-accent/20 hover:text-accent transition-luxury group" aria-label="Email">
