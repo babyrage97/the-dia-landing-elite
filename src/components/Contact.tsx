@@ -117,13 +117,8 @@ const Contact = () => {
                   <Textarea id="message" value={formData.message} onChange={e => handleChange("message", e.target.value)} className="bg-input border-border/50 focus:border-primary transition-luxury min-h-[120px]" placeholder="Tell us about your project requirements..." required />
                 </div>
                 
-                <Button 
-  type="submit" 
-  disabled={isSubmitting}
-  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group disabled:opacity-50" 
-  size="lg"
->
-  {isSubmitting ? 'Sending...' : 'Send Message'}
+<Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group" size="lg">
+  Send Message
   <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 </Button>
               </form>
