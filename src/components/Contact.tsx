@@ -8,6 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -16,30 +17,84 @@ const Contact = () => {
     service: "",
     message: ""
   });
-  const {
-    toast
-  } = useToast();
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { toast } = useToast();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your inquiry. We'll respond within 24 hours."
-    });
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      service: "",
-      message: ""
-    });
+    
+    // Validation
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields (Name, Email, Message).",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: `Company: ${formData.company || 'Not provided'}
+Service Interest: ${formData.service || 'Not specified'}
+
+Message:
+${formData.message}`
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast({
+          title: "Message Sent! ✅",
+          description: "Thank you for your inquiry. We'll respond within 24 hours."
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          service: "",
+          message: ""
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+      
+    } catch (error) {
+      console.error('Contact form error:', error);
+      toast({
+        title: "Error Sending Message",
+        description: "Something went wrong. Please try again or contact us directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const handleChange = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
     }));
   };
-  return <section className="py-24 px-4 md:px-8 bg-muted/30 relative">
+
+  return (
+    <section className="py-24 px-4 md:px-8 bg-muted/30 relative">
       {/* Background Elements */}
       <div className="absolute top-0 left-1/3 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-1/3 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
@@ -71,58 +126,87 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <Card className="card-gradient border-border/50 shadow-card">
-            <CardHeader>
-              <CardTitle className="text-2xl font-space font-semibold text-accent">
-                Send us a Message
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="name" className="text-accent font-inter">Name *</Label>
-                    <Input id="name" value={formData.name} onChange={e => handleChange("name", e.target.value)} className="bg-input border-border/50 focus:border-primary transition-luxury" required />
+              <CardHeader>
+                <CardTitle className="text-2xl font-space font-semibold text-accent">
+                  Send us a Message
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="name" className="text-accent font-inter">Name *</Label>
+                      <Input 
+                        id="name" 
+                        value={formData.name} 
+                        onChange={e => handleChange("name", e.target.value)} 
+                        className="bg-input border-border/50 focus:border-primary transition-luxury" 
+                        required 
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="text-accent font-inter">Email *</Label>
+                      <Input 
+                        id="email" 
+                        type="email" 
+                        value={formData.email} 
+                        onChange={e => handleChange("email", e.target.value)} 
+                        className="bg-input border-border/50 focus:border-primary transition-luxury" 
+                        required 
+                      />
+                    </div>
                   </div>
+                  
                   <div>
-                    <Label htmlFor="email" className="text-accent font-inter">Email *</Label>
-                    <Input id="email" type="email" value={formData.email} onChange={e => handleChange("email", e.target.value)} className="bg-input border-border/50 focus:border-primary transition-luxury" required />
+                    <Label htmlFor="company" className="text-accent font-inter">Company</Label>
+                    <Input 
+                      id="company" 
+                      value={formData.company} 
+                      onChange={e => handleChange("company", e.target.value)} 
+                      className="bg-input border-border/50 focus:border-primary transition-luxury" 
+                    />
                   </div>
-                </div>
-                
-                <div>
-                  <Label htmlFor="company" className="text-accent font-inter">Company</Label>
-                  <Input id="company" value={formData.company} onChange={e => handleChange("company", e.target.value)} className="bg-input border-border/50 focus:border-primary transition-luxury" />
-                </div>
-                
-                <div>
-                  <Label htmlFor="service" className="text-accent font-inter">Service Interest</Label>
-                  <Select value={formData.service} onValueChange={value => handleChange("service", value)}>
-                    <SelectTrigger className="bg-input border-border/50 focus:border-primary transition-luxury">
-                      <SelectValue placeholder="Select a service" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="zoom-rooms">Zoom Room Setup</SelectItem>
-                      <SelectItem value="av-infrastructure">AV Infrastructure</SelectItem>
-                      
-                      <SelectItem value="it-support">On-site IT Support</SelectItem>
-                      <SelectItem value="international">International Service</SelectItem>
-                      <SelectItem value="collaboration">Remote Collaboration</SelectItem>
-                      <SelectItem value="consultation">General Consultation</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div>
-                  <Label htmlFor="message" className="text-accent font-inter">Message *</Label>
-                  <Textarea id="message" value={formData.message} onChange={e => handleChange("message", e.target.value)} className="bg-input border-border/50 focus:border-primary transition-luxury min-h-[120px]" placeholder="Tell us about your project requirements..." required />
-                </div>
-                
-<Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group" size="lg">
-  Send Message
-  <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-</Button>
-              </form>
-            </CardContent>
+                  
+                  <div>
+                    <Label htmlFor="service" className="text-accent font-inter">Service Interest</Label>
+                    <Select value={formData.service} onValueChange={value => handleChange("service", value)}>
+                      <SelectTrigger className="bg-input border-border/50 focus:border-primary transition-luxury">
+                        <SelectValue placeholder="Select a service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="zoom-rooms">Zoom Room Setup</SelectItem>
+                        <SelectItem value="av-infrastructure">AV Infrastructure</SelectItem>
+                        <SelectItem value="it-support">On-site IT Support</SelectItem>
+                        <SelectItem value="international">International Service</SelectItem>
+                        <SelectItem value="collaboration">Remote Collaboration</SelectItem>
+                        <SelectItem value="consultation">General Consultation</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="message" className="text-accent font-inter">Message *</Label>
+                    <Textarea 
+                      id="message" 
+                      value={formData.message} 
+                      onChange={e => handleChange("message", e.target.value)} 
+                      className="bg-input border-border/50 focus:border-primary transition-luxury min-h-[120px]" 
+                      placeholder="Tell us about your project requirements..." 
+                      required 
+                    />
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group disabled:opacity-50" 
+                    size="lg"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </form>
+              </CardContent>
             </Card>
           </motion.div>
           
@@ -197,6 +281,8 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default Contact;
