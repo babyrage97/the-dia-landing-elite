@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Monitor, Wifi, Settings, Headphones, Globe, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 const services = [
   {
@@ -43,7 +45,13 @@ const Services = () => {
       
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-4">
             Our Services
           </h2>
@@ -51,15 +59,19 @@ const Services = () => {
             Comprehensive AV and IT solutions designed to transform your workspace 
             into a hub of productivity and innovation.
           </p>
-        </div>
+        </motion.div>
         
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
-            <Card 
+            <motion.div
               key={service.title}
-              className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group h-full"
             >
               <CardHeader className="pb-4">
                 <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-luxury">
@@ -82,17 +94,24 @@ const Services = () => {
                   ))}
                 </ul>
               </CardContent>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
         
         {/* Bottom CTA */}
-        <div className="text-center mt-16 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+        <motion.div 
+          className="text-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <p className="text-lg text-muted-foreground mb-6 font-inter">
             Ready to transform your workspace?
           </p>
           <div className="w-32 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full shadow-glow" />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

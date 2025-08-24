@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "framer-motion";
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -45,7 +46,13 @@ const Contact = () => {
       
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-4">
             Get in Touch
           </h2>
@@ -53,11 +60,17 @@ const Contact = () => {
             Ready to transform your workspace? Contact our experts for a personalized consultation 
             and discover how The-Dia can elevate your organization's collaboration capabilities.
           </p>
-        </div>
+        </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <Card className="card-gradient border-border/50 shadow-card animate-scale-in">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="card-gradient border-border/50 shadow-card">
             <CardHeader>
               <CardTitle className="text-2xl font-space font-semibold text-accent">
                 Send us a Message
@@ -90,7 +103,7 @@ const Contact = () => {
                     <SelectContent>
                       <SelectItem value="zoom-rooms">Zoom Room Setup</SelectItem>
                       <SelectItem value="av-infrastructure">AV Infrastructure</SelectItem>
-                      <SelectItem value="smart-office">Smart Office Solutions</SelectItem>
+                      
                       <SelectItem value="it-support">On-site IT Support</SelectItem>
                       <SelectItem value="international">International Service</SelectItem>
                       <SelectItem value="collaboration">Remote Collaboration</SelectItem>
@@ -110,12 +123,17 @@ const Contact = () => {
                 </Button>
               </form>
             </CardContent>
-          </Card>
+            </Card>
+          </motion.div>
           
           {/* Contact Information */}
-          <div className="space-y-8 animate-fade-up" style={{
-          animationDelay: '0.2s'
-        }}>
+          <motion.div 
+            className="space-y-8"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            viewport={{ once: true }}
+          >
             <Card className="card-gradient border-border/50 shadow-card">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
@@ -176,7 +194,7 @@ const Contact = () => {
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>;

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ThemeToggle from '@/components/ThemeToggle';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -107,20 +106,10 @@ const Navigation = () => {
                 >
                   {item.label}
                 </button>
-              ))}
-              <div className="px-3 py-2">
-                <ThemeToggle />
-              </div>
-            </div>
+               ))}
+             </div>
           </div>
         )}
-      </div>
-      
-      {/* Fixed Theme Toggle - Bottom Left */}
-      <div className="fixed bottom-6 left-6 z-50 hidden md:block">
-        <div className="bg-background/95 backdrop-blur-md border border-border rounded-full p-2 shadow-lg">
-          <ThemeToggle />
-        </div>
       </div>
     </nav>
   );

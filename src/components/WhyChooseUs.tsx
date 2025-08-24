@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Shield, Clock, Users, Lightbulb, TrendingUp } from "lucide-react";
+import { motion } from "framer-motion";
 
 const reasons = [
   {
@@ -46,7 +47,13 @@ const WhyChooseUs = () => {
       
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-up">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-4">
             Why Choose The-Dia
           </h2>
@@ -54,15 +61,19 @@ const WhyChooseUs = () => {
             We don't just install technology—we craft intelligent solutions that evolve with your business, 
             backed by unmatched expertise and unwavering commitment to excellence.
           </p>
-        </div>
+        </motion.div>
         
         {/* Reasons Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {reasons.map((reason, index) => (
-            <Card 
+            <motion.div
               key={reason.title}
-              className="card-gradient border-border/30 hover:border-primary/30 transition-luxury shadow-card hover:shadow-luxury group animate-scale-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <Card className="card-gradient border-border/30 hover:border-primary/30 transition-luxury shadow-card hover:shadow-luxury group h-full"
             >
               <CardContent className="p-8 text-center">
                 <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-primary/20 transition-luxury">
@@ -75,12 +86,19 @@ const WhyChooseUs = () => {
                   {reason.description}
                 </p>
               </CardContent>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
         
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+        <motion.div 
+          className="grid grid-cols-2 md:grid-cols-4 gap-8"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <div className="text-center">
             <div className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-2">500+</div>
             <div className="text-muted-foreground font-inter">Projects Delivered</div>
@@ -97,7 +115,7 @@ const WhyChooseUs = () => {
             <div className="text-4xl md:text-5xl font-space font-bold text-gradient-diamond mb-2">24/7</div>
             <div className="text-muted-foreground font-inter">Expert Support</div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

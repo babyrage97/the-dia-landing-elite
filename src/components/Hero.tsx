@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
-import Diamond3D from "@/components/Diamond3D";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
@@ -21,12 +21,24 @@ const Hero = () => {
       <div className="absolute bottom-40 left-10 w-24 h-24 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       
       <div className="container relative z-10 px-4 md:px-8">
-        <div className="max-w-4xl mx-auto text-center animate-fade-up">
-          {/* Logo/Brand with 3D Diamond */}
+        <motion.div 
+          className="max-w-4xl mx-auto text-center"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          {/* Logo/Brand */}
           <div className="mb-8 flex flex-col items-center">
-            <div className="mb-4">
-              <Diamond3D />
-            </div>
+            {/* Abstract geometric shape instead of 3D diamond */}
+            <motion.div 
+              className="mb-4 w-16 h-16 relative"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg rotate-45 shadow-glow"></div>
+              <div className="absolute inset-2 bg-background rounded-lg"></div>
+            </motion.div>
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
             </h1>
@@ -34,19 +46,34 @@ const Hero = () => {
           </div>
           
           {/* Tagline */}
-          <h2 className="text-2xl md:text-4xl font-inter font-light text-foreground mb-6 leading-relaxed">
+          <motion.h2 
+            className="text-2xl md:text-4xl font-inter font-light text-foreground mb-6 leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
             Smart AV & IT Infrastructure for{" "}
             <span className="text-gradient-diamond font-medium">Modern Workspaces</span>
-          </h2>
+          </motion.h2>
           
           {/* Description */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-inter leading-relaxed">
+          <motion.p 
+            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-inter leading-relaxed"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
             Premium enterprise solutions for Zoom Rooms, conferencing integration, 
-            smart office infrastructure, and international service delivery.
-          </p>
+            and international service delivery.
+          </motion.p>
           
           {/* CTA Button */}
-          <div className="flex justify-center">
+          <motion.div 
+            className="flex justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
             <Button 
               size="lg" 
               className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group px-8 py-6 text-lg font-medium"
@@ -54,10 +81,15 @@ const Hero = () => {
               Explore Our Services
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
-          </div>
+          </motion.div>
           
           {/* Trust Indicators */}
-          <div className="mt-16 text-center animate-scale-in" style={{ animationDelay: '0.3s' }}>
+          <motion.div 
+            className="mt-16 text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.6 }}
+          >
             <p className="text-sm text-muted-foreground mb-4 font-inter">Trusted by leading organizations</p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               <span className="text-accent font-space font-medium">CHBC</span>
@@ -65,8 +97,8 @@ const Hero = () => {
               <span className="text-accent font-space font-medium">Lenovo</span>
               <span className="text-accent font-space font-medium">European Patent Office</span>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
       
       {/* Scroll Indicator */}
