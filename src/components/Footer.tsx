@@ -79,7 +79,18 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-border/30 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-muted-foreground font-inter text-sm">© 2025 withoutco.de All rights reserved.</p>
+            <p className="text-muted-foreground font-inter text-sm">
+  © 2025{' '}
+  <a 
+    href="https://withoutco.de" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="text-primary hover:text-accent underline-offset-4 hover:underline transition-all duration-200"
+  >
+    withoutco.de
+  </a>{' '}
+  All rights reserved.
+</p>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
                 Privacy Policy
