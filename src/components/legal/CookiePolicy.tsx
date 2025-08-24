@@ -5,17 +5,35 @@ const CookiePolicy = () => {
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent">
-              Cookie Policy
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            How we use cookies and similar technologies to enhance your experience on our website.
-          </p>
-          <div className="mt-6 text-sm text-muted-foreground">
-            Last updated: {new Date().toLocaleDateString()}
+        <div className="max-w-6xl mx-auto">
+          {/* Back Button */}
+          <div className="mb-8">
+            <button
+              onClick={() => window.location.href = '/'}
+              className="inline-flex items-center gap-3 text-muted-foreground hover:text-[#FFD700] transition-colors group"
+            >
+              <div className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center group-hover:bg-[#FFD700]/20 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </div>
+              <span className="font-medium">Back to Home</span>
+            </button>
+          </div>
+          
+          {/* Title Section */}
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent">
+                Cookie Policy
+              </span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              How we use cookies and similar technologies to enhance your experience on our website.
+            </p>
+            <div className="mt-6 text-sm text-muted-foreground">
+              Last updated: {new Date().toLocaleDateString()}
+            </div>
           </div>
         </div>
       </section>
@@ -120,39 +138,6 @@ const CookiePolicy = () => {
                 </div>
               </div>
 
-              {/* Functional Cookies */}
-              <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-xl p-6 border border-purple-500/20">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-purple-400 text-xl">⚙️</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2 text-purple-400">Functional Cookies</h3>
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs rounded-full">Optional</span>
-                      <span className="text-muted-foreground text-sm">Enhance experience</span>
-                    </div>
-                    <p className="text-muted-foreground mb-4">
-                      Enhance your experience with personalized features and preferences.
-                    </p>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div className="p-3 bg-muted/20 rounded-lg">
-                    <h4 className="font-medium text-sm mb-1">Theme Preferences</h4>
-                    <p className="text-muted-foreground text-xs">Dark/light mode selection</p>
-                  </div>
-                  <div className="p-3 bg-muted/20 rounded-lg">
-                    <h4 className="font-medium text-sm mb-1">Language Settings</h4>
-                    <p className="text-muted-foreground text-xs">Preferred language choices</p>
-                  </div>
-                  <div className="p-3 bg-muted/20 rounded-lg">
-                    <h4 className="font-medium text-sm mb-1">Form Data</h4>
-                    <p className="text-muted-foreground text-xs">Temporary data retention</p>
-                  </div>
-                </div>
-              </div>
-
               {/* Marketing Cookies */}
               <div className="bg-gradient-to-br from-orange-500/10 to-orange-600/5 rounded-xl p-6 border border-orange-500/20">
                 <div className="flex items-start gap-4 mb-4">
@@ -188,87 +173,6 @@ const CookiePolicy = () => {
             </div>
           </div>
 
-          {/* Third-Party Cookies */}
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <div className="w-2 h-8 bg-gradient-to-b from-[#FFD700] to-[#B8860B] rounded-full"></div>
-              Third-Party Services
-            </h2>
-            
-            <p className="text-muted-foreground mb-8">Our website includes third-party services that may set their own cookies:</p>
-            
-            <div className="space-y-6">
-              <div className="flex items-start gap-4 p-6 bg-muted/20 rounded-xl border border-border/30">
-                <div className="w-12 h-12 bg-[#4285F4]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#4285F4] text-xl font-bold">G</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold mb-2 text-foreground">Google Analytics</h4>
-                  <p className="text-muted-foreground text-sm mb-3">
-                    Provides website analytics and user behavior insights to help us improve our AV & IT services.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full">Analytics</span>
-                    <a 
-                      href="https://policies.google.com/privacy" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="px-3 py-1 bg-muted/40 text-muted-foreground text-xs rounded-full hover:bg-muted/60 transition-colors"
-                    >
-                      Privacy Policy ↗
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 p-6 bg-muted/20 rounded-xl border border-border/30">
-                <div className="w-12 h-12 bg-[#0077B5]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#0077B5] text-xl font-bold">in</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold mb-2 text-foreground">LinkedIn</h4>
-                  <p className="text-muted-foreground text-sm mb-3">
-                    Professional networking and B2B conversion tracking for our enterprise services.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full">Marketing</span>
-                    <a 
-                      href="https://www.linkedin.com/legal/privacy-policy" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="px-3 py-1 bg-muted/40 text-muted-foreground text-xs rounded-full hover:bg-muted/60 transition-colors"
-                    >
-                      Privacy Policy ↗
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4 p-6 bg-muted/20 rounded-xl border border-border/30">
-                <div className="w-12 h-12 bg-[#4285F4]/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#4285F4] text-xl">Aa</span>
-                </div>
-                <div className="flex-1">
-                  <h4 className="font-semibold mb-2 text-foreground">Google Fonts</h4>
-                  <p className="text-muted-foreground text-sm mb-3">
-                    Web font delivery service for consistent typography across our website.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">Essential</span>
-                    <a 
-                      href="https://developers.google.com/fonts/faq#privacy" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="px-3 py-1 bg-muted/40 text-muted-foreground text-xs rounded-full hover:bg-muted/60 transition-colors"
-                    >
-                      Privacy FAQ ↗
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Managing Cookies */}
           <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
             <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
@@ -281,7 +185,7 @@ const CookiePolicy = () => {
                 <h3 className="text-xl font-semibold mb-4 text-[#FFD700]">Cookie Banner Control</h3>
                 <div className="bg-muted/30 p-6 rounded-xl border border-border/30">
                   <p className="text-muted-foreground mb-4">
-                    When you first visit our site, you'll see a cookie banner allowing you to accept or 
+                    When you first visit our site, you will see a cookie banner allowing you to accept or 
                     customize your cookie preferences. You can change these settings at any time.
                   </p>
                   <div className="bg-gradient-to-r from-[#FFD700]/10 to-[#B8860B]/10 p-4 rounded-lg border border-[#FFD700]/20">
@@ -407,6 +311,28 @@ const CookiePolicy = () => {
 
         </div>
       </section>
+      
+      {/* Floating Back Button */}
+      <button
+        onClick={() => window.location.href = '/'}
+        className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-gradient-to-r from-[#FFD700] to-[#B8860B] text-black rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 flex items-center justify-center group"
+        aria-label="Back to Home"
+      >
+        <svg 
+          className="w-6 h-6 transform group-hover:-translate-x-1 transition-transform duration-200" 
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        
+        {/* Tooltip */}
+        <div className="absolute right-full mr-3 px-3 py-2 bg-foreground text-background text-sm rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
+          Back to Home
+          <div className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-foreground"></div>
+        </div>
+      </button>
     </div>
   );
 };
