@@ -90,6 +90,7 @@ const Footer = () => {
     withoutco.de
   </a>{' '}
   All rights reserved.
+              </p>
 <div className="flex space-x-4">
   <Link to="/privacy-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
     Privacy Policy
