@@ -3,19 +3,37 @@ import React from 'react';
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Hero Section - matching your site's hero style */}
+      {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent">
-              Privacy Policy
-            </span>
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            How we protect and handle your personal information with the highest standards of security and transparency.
-          </p>
-          <div className="mt-6 text-sm text-muted-foreground">
-            Last updated: {new Date().toLocaleDateString()}
+        <div className="max-w-6xl mx-auto">
+          {/* Back Button */}
+          <div className="mb-8">
+            <button
+              onClick={() => window.location.href = '/'}
+              className="inline-flex items-center gap-3 text-muted-foreground hover:text-[#FFD700] transition-colors group"
+            >
+              <div className="w-8 h-8 rounded-full bg-muted/30 flex items-center justify-center group-hover:bg-[#FFD700]/20 transition-colors">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </div>
+              <span className="font-medium">Back to Home</span>
+            </button>
+          </div>
+          
+          {/* Title Section */}
+          <div className="text-center">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-[#FFD700] to-[#B8860B] bg-clip-text text-transparent">
+                Privacy Policy
+              </span>
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              How we protect and handle your personal information with the highest standards of security and transparency.
+            </p>
+            <div className="mt-6 text-sm text-muted-foreground">
+              Last updated: {new Date().toLocaleDateString()}
+            </div>
           </div>
         </div>
       </section>
@@ -129,125 +147,6 @@ const PrivacyPolicy = () => {
             </div>
           </div>
 
-          {/* Information Sharing */}
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <div className="w-2 h-8 bg-gradient-to-b from-[#FFD700] to-[#B8860B] rounded-full"></div>
-              Information Sharing
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="p-6 bg-gradient-to-br from-muted/30 to-muted/10 rounded-xl border border-border/30">
-                <div className="w-12 h-12 bg-[#FFD700]/20 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-[#FFD700] rounded"></div>
-                </div>
-                <h4 className="font-semibold mb-3">Service Providers</h4>
-                <p className="text-muted-foreground text-sm">Trusted vendors for equipment, installation, and technical support</p>
-              </div>
-              <div className="p-6 bg-gradient-to-br from-muted/30 to-muted/10 rounded-xl border border-border/30">
-                <div className="w-12 h-12 bg-[#FFD700]/20 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-[#FFD700] rounded-full"></div>
-                </div>
-                <h4 className="font-semibold mb-3">Business Partners</h4>
-                <p className="text-muted-foreground text-sm">AV manufacturers, technology partners, integration specialists</p>
-              </div>
-              <div className="p-6 bg-gradient-to-br from-muted/30 to-muted/10 rounded-xl border border-border/30">
-                <div className="w-12 h-12 bg-[#FFD700]/20 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 bg-[#FFD700] rounded-sm"></div>
-                </div>
-                <h4 className="font-semibold mb-3">Legal Compliance</h4>
-                <p className="text-muted-foreground text-sm">When required by law or to protect our legitimate interests</p>
-              </div>
-            </div>
-            
-            <div className="bg-gradient-to-r from-[#FFD700]/10 to-[#B8860B]/10 p-6 rounded-xl border border-[#FFD700]/20">
-              <p className="font-semibold text-[#FFD700] mb-2">Our Commitment</p>
-              <p className="text-muted-foreground">We never sell or rent your personal information to third parties. Your data is shared only to deliver exceptional service.</p>
-            </div>
-          </div>
-
-          {/* Data Security */}
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <div className="w-2 h-8 bg-gradient-to-b from-[#FFD700] to-[#B8860B] rounded-full"></div>
-              Data Security
-            </h2>
-            
-            <p className="text-muted-foreground mb-8">Enterprise-grade security measures protect your information:</p>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 bg-muted/20 rounded-lg border border-border/30">
-                  <div className="w-8 h-8 bg-[#FFD700]/20 rounded-lg flex items-center justify-center">
-                    <div className="w-4 h-4 border-2 border-[#FFD700] rounded"></div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium">SSL/TLS Encryption</h4>
-                    <p className="text-muted-foreground text-sm">Secure data transmission</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-muted/20 rounded-lg border border-border/30">
-                  <div className="w-8 h-8 bg-[#FFD700]/20 rounded-lg flex items-center justify-center">
-                    <div className="w-4 h-4 border-2 border-[#FFD700] rounded-full"></div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Secure Infrastructure</h4>
-                    <p className="text-muted-foreground text-sm">Protected servers and data centers</p>
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-4 bg-muted/20 rounded-lg border border-border/30">
-                  <div className="w-8 h-8 bg-[#FFD700]/20 rounded-lg flex items-center justify-center">
-                    <div className="w-4 h-4 bg-[#FFD700] rounded-sm"></div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Access Control</h4>
-                    <p className="text-muted-foreground text-sm">Limited authorized personnel</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 p-4 bg-muted/20 rounded-lg border border-border/30">
-                  <div className="w-8 h-8 bg-[#FFD700]/20 rounded-lg flex items-center justify-center">
-                    <div className="w-2 h-4 bg-[#FFD700] rounded-full"></div>
-                  </div>
-                  <div>
-                    <h4 className="font-medium">Regular Audits</h4>
-                    <p className="text-muted-foreground text-sm">Continuous security monitoring</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Your Rights */}
-          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
-            <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <div className="w-2 h-8 bg-gradient-to-b from-[#FFD700] to-[#B8860B] rounded-full"></div>
-              Your Rights
-            </h2>
-            
-            <p className="text-muted-foreground mb-8">You have complete control over your personal information:</p>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 bg-gradient-to-br from-[#FFD700]/10 to-transparent rounded-xl border border-[#FFD700]/20">
-                <h4 className="font-semibold mb-3 text-[#FFD700]">Access & Review</h4>
-                <p className="text-muted-foreground text-sm">Request copies of your personal information and see how it's being used</p>
-              </div>
-              <div className="p-6 bg-gradient-to-br from-[#FFD700]/10 to-transparent rounded-xl border border-[#FFD700]/20">
-                <h4 className="font-semibold mb-3 text-[#FFD700]">Correct & Update</h4>
-                <p className="text-muted-foreground text-sm">Fix any inaccurate or incomplete information we hold about you</p>
-              </div>
-              <div className="p-6 bg-gradient-to-br from-[#FFD700]/10 to-transparent rounded-xl border border-[#FFD700]/20">
-                <h4 className="font-semibold mb-3 text-[#FFD700]">Delete & Remove</h4>
-                <p className="text-muted-foreground text-sm">Request deletion of your personal information when no longer needed</p>
-              </div>
-              <div className="p-6 bg-gradient-to-br from-[#FFD700]/10 to-transparent rounded-xl border border-[#FFD700]/20">
-                <h4 className="font-semibold mb-3 text-[#FFD700]">Data Portability</h4>
-                <p className="text-muted-foreground text-sm">Receive your data in a structured, commonly used format</p>
-              </div>
-            </div>
-          </div>
-
           {/* Contact Section */}
           <div className="bg-gradient-to-r from-card/50 to-card/30 backdrop-blur-sm rounded-2xl p-8 border border-border/50">
             <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
@@ -292,15 +191,6 @@ const PrivacyPolicy = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Updates Notice */}
-          <div className="bg-gradient-to-r from-[#FFD700]/10 via-[#B8860B]/10 to-[#FFD700]/10 rounded-2xl p-8 border border-[#FFD700]/20 text-center">
-            <h3 className="text-xl font-semibold mb-4 text-[#FFD700]">Policy Updates</h3>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We may update this Privacy Policy to reflect changes in our practices or applicable laws. 
-              We'll notify you of significant changes through our website or email.
-            </p>
           </div>
 
         </div>
