@@ -49,11 +49,25 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo + Brand */}
           <div className="flex-shrink-0">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              The-Dia
-            </h1>
+            <button 
+              onClick={() => scrollToSection('#home')}
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity duration-200"
+            >
+              {/* Logo */}
+              <div className="w-8 h-8 sm:w-10 sm:h-10">
+                <img 
+                  src="/logo.png" 
+                  alt="The-Dia Logo" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              {/* Brand Text */}
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                The-Dia
+              </h1>
+            </button>
           </div>
 
           {/* Desktop Navigation - Centered */}
