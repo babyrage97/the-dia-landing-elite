@@ -100,7 +100,6 @@ const Footer = () => {
   <Link to="/cookie-policy" className="text-muted-foreground hover:text-[#FFD700] transition-colors">
     Cookie Policy
   </Link>
-</div>
           </div>
         </div>
       </div>
