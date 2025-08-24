@@ -7,10 +7,10 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
-// Import legal components
+// Import samo postojeće komponente
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
-import TermsOfService from "./components/legal/TermsOfService";
-import CookiePolicy from "./components/legal/CookiePolicy";
+// import TermsOfService from "./components/legal/TermsOfService"; // Zakomentariši
+// import CookiePolicy from "./components/legal/CookiePolicy"; // Zakomentariši
 
 const queryClient = new QueryClient();
 
@@ -24,12 +24,11 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             
-            {/* Legal Pages */}
+            {/* Samo postojeće rute */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            {/* <Route path="/terms-of-service" element={<TermsOfService />} /> */}
+            {/* <Route path="/cookie-policy" element={<CookiePolicy />} /> */}
             
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
