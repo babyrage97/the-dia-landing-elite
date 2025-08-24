@@ -9,8 +9,7 @@ import NotFound from "./pages/NotFound";
 
 // Import samo postojeće komponente
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
-// import TermsOfService from "./components/legal/TermsOfService"; // Zakomentariši
-// import CookiePolicy from "./components/legal/CookiePolicy"; // Zakomentariši
+
 
 const queryClient = new QueryClient();
 
@@ -26,8 +25,7 @@ const App = () => (
             
             {/* Samo postojeće rute */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            {/* <Route path="/terms-of-service" element={<TermsOfService />} /> */}
-            {/* <Route path="/cookie-policy" element={<CookiePolicy />} /> */}
+
             
             <Route path="*" element={<NotFound />} />
           </Routes>
