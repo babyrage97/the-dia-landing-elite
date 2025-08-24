@@ -10,7 +10,7 @@ const Footer = () => {
             </h3>
             <p className="text-muted-foreground font-inter leading-relaxed mb-6 max-w-md">
               Transforming modern workspaces with premium AV and IT infrastructure solutions. 
-              Your trusted partner for enterprise conferencing, smart office technology, and international service delivery.
+              Your trusted partner for enterprise conferencing and international service delivery.
             </p>
             
             {/* Social Links */}
@@ -40,16 +40,11 @@ const Footer = () => {
                 <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
                   AV Infrastructure
                 </a>
-              </li>
-              <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
-                  Smart Office Solutions
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
-                  On-site IT Support
-                </a>
+               </li>
+               <li>
+                 <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">
+                   On-site IT Support
+                 </a>
               </li>
               <li>
                 <a href="#services" className="text-muted-foreground hover:text-primary transition-luxury font-inter">

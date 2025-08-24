@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Shield, Clock, Users, Lightbulb, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
+import { useCountUp } from "@/hooks/useCountUp";
 
 const reasons = [
   {
@@ -36,6 +37,10 @@ const reasons = [
 ];
 
 const WhyChooseUs = () => {
+  const projectsCount = useCountUp({ end: 500, duration: 1500 });
+  const uptimeCount = useCountUp({ end: 99.9, duration: 1500, decimals: 1 });
+  const countriesCount = useCountUp({ end: 50, duration: 1500 });
+
   return (
     <section className="py-24 px-4 md:px-8 bg-muted/30 relative overflow-hidden">
       {/* Background Pattern */}
@@ -99,16 +104,22 @@ const WhyChooseUs = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-2">500+</div>
+          <div className="text-center" ref={projectsCount.elementRef}>
+            <div className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-2">
+              {projectsCount.count}+
+            </div>
             <div className="text-muted-foreground font-inter">Projects Delivered</div>
           </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-space font-bold text-gradient-diamond mb-2">99.9%</div>
+          <div className="text-center" ref={uptimeCount.elementRef}>
+            <div className="text-4xl md:text-5xl font-space font-bold text-gradient-diamond mb-2">
+              {uptimeCount.count}%
+            </div>
             <div className="text-muted-foreground font-inter">Uptime Guarantee</div>
           </div>
-          <div className="text-center">
-            <div className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-2">50+</div>
+          <div className="text-center" ref={countriesCount.elementRef}>
+            <div className="text-4xl md:text-5xl font-space font-bold text-gradient-gold mb-2">
+              {countriesCount.count}+
+            </div>
             <div className="text-muted-foreground font-inter">Countries Served</div>
           </div>
           <div className="text-center">

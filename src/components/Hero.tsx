@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import { motion } from "framer-motion";
+import Diamond3D from "@/components/Diamond3D";
 
 const Hero = () => {
   return (
@@ -27,17 +28,15 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Logo/Brand */}
+          {/* Logo/Brand with 3D Diamond */}
           <div className="mb-8 flex flex-col items-center">
-            {/* Abstract geometric shape instead of 3D diamond */}
             <motion.div 
-              className="mb-4 w-16 h-16 relative"
+              className="mb-4"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.68, -0.55, 0.265, 1.55] }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg rotate-45 shadow-glow"></div>
-              <div className="absolute inset-2 bg-background rounded-lg"></div>
+              <Diamond3D />
             </motion.div>
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
