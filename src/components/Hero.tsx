@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import { motion } from "framer-motion";
-import Diamond3D from "@/components/Diamond3D";
+// Uklonjen import za Diamond3D
+// import Diamond3D from "@/components/Diamond3D";
 
 const Hero = () => {
   return (
@@ -28,8 +29,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Logo/Brand with 3D Diamond */}
+          {/* Logo/Brand - uklonjen 3D Diamond */}
           <div className="mb-8 flex flex-col items-center">
+            {/* Uklonjen Diamond3D component
             <motion.div 
               className="mb-4"
               initial={{ scale: 0 }}
@@ -38,6 +40,7 @@ const Hero = () => {
             >
               <Diamond3D />
             </motion.div>
+            */}
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
             </h1>
