@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
 import { motion } from "framer-motion";
-// Uklonjen import za Diamond3D
-// import Diamond3D from "@/components/Diamond3D";
+import ScrollDiamond3D from "@/components/ScrollDiamond3D";
 
 const Hero = () => {
   return (
@@ -18,33 +17,27 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
       </div>
       
+      {/* Veliki 3D dijamant na levoj strani - okreće se pri scroll-u */}
+      <ScrollDiamond3D />
+      
       {/* Floating Elements */}
       <div className="absolute top-20 right-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-40 left-10 w-24 h-24 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute bottom-40 right-10 w-24 h-24 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '2s' }} />
       
       <div className="container relative z-10 px-4 md:px-8">
+        {/* Pomeren sadržaj malo desno zbog dijamanta */}
         <motion.div 
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-4xl mx-auto text-center md:ml-auto md:mr-0 md:text-left md:pl-80"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Logo/Brand - uklonjen 3D Diamond */}
-          <div className="mb-8 flex flex-col items-center">
-            {/* Uklonjen Diamond3D component
-            <motion.div 
-              className="mb-4"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.68, -0.55, 0.265, 1.55] }}
-            >
-              <Diamond3D />
-            </motion.div>
-            */}
+          {/* Logo/Brand */}
+          <div className="mb-8 flex flex-col items-center md:items-start">
             <h1 className="text-6xl md:text-8xl font-space font-bold text-gradient-gold mb-2">
               The-Dia
             </h1>
-            <div className="w-24 h-1 bg-primary mx-auto rounded-full shadow-glow" />
+            <div className="w-24 h-1 bg-primary rounded-full shadow-glow" />
           </div>
           
           {/* Tagline */}
@@ -60,7 +53,7 @@ const Hero = () => {
           
           {/* Description */}
           <motion.p 
-            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto font-inter leading-relaxed"
+            className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto md:mx-0 font-inter leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
@@ -71,7 +64,7 @@ const Hero = () => {
           
           {/* CTA Button */}
           <motion.div 
-            className="flex justify-center"
+            className="flex justify-center md:justify-start"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.6 }}
@@ -87,13 +80,13 @@ const Hero = () => {
           
           {/* Trust Indicators */}
           <motion.div 
-            className="mt-16 text-center"
+            className="mt-16 text-center md:text-left"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
             <p className="text-sm text-muted-foreground mb-4 font-inter">Trusted by leading organizations</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+            <div className="flex flex-wrap justify-center md:justify-start items-center gap-8 opacity-60">
               <span className="text-accent font-space font-medium">CHBC</span>
               <span className="text-accent font-space font-medium">Nutanix</span>
               <span className="text-accent font-space font-medium">Lenovo</span>
