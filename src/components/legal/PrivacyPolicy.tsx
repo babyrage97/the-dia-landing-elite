@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from '/components/ui/Navigation';  // prilagodi putanju
-import Footer from '/components/ui/Footer';     
+import Navigation from '../../ui/Navigation';
+import Footer from '../../ui/Footer';
 
 const PrivacyPolicy = () => {
   return (
