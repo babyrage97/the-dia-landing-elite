@@ -1,8 +1,18 @@
 import React from 'react';
+import Navigation from '../Navigation';
+import Footer from '../Footer';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <>
+      <Navigation />
+      <div className="min-h-screen bg-muted/30 text-foreground">
+        {/* Background Pattern - matching ProVisit */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+          <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent/5 rounded-full blur-2xl animate-float" style={{ animationDelay: '1.5s' }} />
+        </div>
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
