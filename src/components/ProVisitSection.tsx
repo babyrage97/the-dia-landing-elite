@@ -186,12 +186,12 @@ const ProVisitSection = () => {
                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-luxury">
                       <span className="text-primary text-2xl">📱</span>
                     </div>
-                    <p className="text-muted-foreground font-inter">Dashboard photo</p>
-                    <p className="text-muted-foreground text-sm font-inter">/p>
+                    <p className="text-muted-foreground font-inter">Dashboard Screenshot</p>
+                    <p className="text-muted-foreground text-sm font-inter">Upload your ProVisit interface image</p>
                   </div>
                 </div>
-                <h4 className="text-xl font-semibold text-accent mb-2 font-space">Visit photo</h4>
-                <p className="text-muted-foreground font-inter"></p>
+                <h4 className="text-xl font-semibold text-accent mb-2 font-space">Visit Dashboard</h4>
+                <p className="text-muted-foreground font-inter">Comprehensive overview of all scheduled visits, engineer assignments, and client approvals</p>
               </CardContent>
             </Card>
 
