@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const selectRef = useRef(null);
 
   const { toast } = useToast();
 
@@ -91,6 +92,17 @@ ${formData.message}`
       ...prev,
       [field]: value
     }));
+  };
+
+  // Android select fix
+  const handleSelectOpen = () => {
+    // Sprečava scroll kada se otvara select na Android
+    if (/Android/i.test(navigator.userAgent)) {
+      const currentScrollPos = window.pageYOffset;
+      setTimeout(() => {
+        window.scrollTo(0, currentScrollPos);
+      }, 100);
+    }
   };
 
   return (
@@ -169,16 +181,43 @@ ${formData.message}`
                   
                   <div>
                     <Label htmlFor="service" className="text-accent font-inter">Service Interest</Label>
-                    <Select value={formData.service} onValueChange={value => handleChange("service", value)}>
-                      <SelectTrigger className="bg-input border-border/50 focus:border-primary transition-luxury">
+                    <Select 
+                      value={formData.service} 
+                      onValueChange={value => handleChange("service", value)}
+                      onOpenChange={(isOpen) => {
+                        if (isOpen) {
+                          handleSelectOpen();
+                        }
+                      }}
+                    >
+                      <SelectTrigger 
+                        ref={selectRef}
+                        className="bg-input border-border/50 focus:border-primary transition-luxury"
+                        style={{
+                          fontSize: '16px', // Sprečava zoom na iOS/Android
+                          transformOrigin: 'top left'
+                        }}
+                      >
                         <SelectValue placeholder="Select a service" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent
+                        position="popper"
+                        side="bottom"
+                        align="start"
+                        className="z-50 max-h-60 overflow-y-auto"
+                        onCloseAutoFocus={(e) => {
+                          // Sprečava vraćanje fokusa koji može dovesti do scroll-a
+                          if (/Android/i.test(navigator.userAgent)) {
+                            e.preventDefault();
+                          }
+                        }}
+                      >
                         <SelectItem value="zoom-rooms">Zoom Room Setup</SelectItem>
                         <SelectItem value="av-infrastructure">AV Infrastructure</SelectItem>
                         <SelectItem value="it-support">On-site IT Support</SelectItem>
                         <SelectItem value="international">International Service</SelectItem>
                         <SelectItem value="collaboration">Remote Collaboration</SelectItem>
+                        <SelectItem value="provisit">ProVisit Ticket Service</SelectItem>
                         <SelectItem value="consultation">General Consultation</SelectItem>
                       </SelectContent>
                     </Select>
@@ -193,6 +232,7 @@ ${formData.message}`
                       className="bg-input border-border/50 focus:border-primary transition-luxury min-h-[120px]" 
                       placeholder="Tell us about your project requirements..." 
                       required 
+                      style={{ fontSize: '16px' }} // Sprečava zoom na mobile
                     />
                   </div>
                   
