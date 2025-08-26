@@ -197,7 +197,7 @@ const ProVisitSection = () => {
               <CardContent className="p-8">
 <div className="aspect-video rounded-xl mb-6 overflow-hidden">
   <img 
-    src="/public/provisit/inventory.jpg"
+    src="/provisit/inventory.jpg"
     alt="ProVisit Inventory Management" 
     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
   />
