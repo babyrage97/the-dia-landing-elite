@@ -6,6 +6,7 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import ThemeToggle from "@/components/ThemeToggle";
+import ProVisitSection from "@/components/ProVisitSection";
 
 const Index = () => {
   return (
@@ -17,6 +18,9 @@ const Index = () => {
       </div>
       <div id="services">
         <Services />
+      </div>
+        <div id="ProVisitSection">
+        <ProVisit />
       </div>
       <div id="projects">
         <Projects />
