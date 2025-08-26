@@ -187,7 +187,6 @@ const ProVisitSection = () => {
                       <span className="text-primary text-2xl">📱</span>
                     </div>
                     <p className="text-muted-foreground font-inter">Dashboard Screenshot</p>
-                    <p className="text-muted-foreground text-sm font-inter">Upload your ProVisit interface image</p>
                   </div>
                 </div>
                 <h4 className="text-xl font-semibold text-accent mb-2 font-space">Visit Dashboard</h4>
@@ -203,7 +202,6 @@ const ProVisitSection = () => {
                       <span className="text-primary text-2xl">📋</span>
                     </div>
                     <p className="text-muted-foreground font-inter">Inventory Interface</p>
-                    <p className="text-muted-foreground text-sm font-inter">Upload your inventory management view</p>
                   </div>
                 </div>
                 <h4 className="text-xl font-semibold text-accent mb-2 font-space">Equipment Inventory</h4>
