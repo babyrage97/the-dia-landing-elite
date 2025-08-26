@@ -1,6 +1,6 @@
 import React from 'react';
-import Navigation from '@/components/ui/Navigation.tsx';
-import Footer from '@/components/ui/Footer.tsx';
+import Navigation from '../ui/Navigation';
+import Footer from '../ui/Footer';
 
 const PrivacyPolicy = () => {
   return (
