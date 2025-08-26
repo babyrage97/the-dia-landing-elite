@@ -67,10 +67,13 @@ const ProVisitSection = () => {
   ];
 
   return (
-    <section id="provisit" className="py-24 px-4 md:px-8 bg-background relative">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+    <section id="provisit" className="py-24 px-4 md:px-8 bg-muted/30 relative overflow-hidden">
+      {/* Background Pattern - matching WhyChooseUs exactly */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-10 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
+        <div className="absolute top-1/2 left-1/3 w-48 h-48 bg-accent/5 rounded-full blur-2xl animate-float" style={{ animationDelay: '1.5s' }} />
+      </div>
       
       <div className="container mx-auto relative z-10">
         {/* Section Header */}
