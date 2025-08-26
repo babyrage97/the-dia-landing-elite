@@ -181,14 +181,13 @@ const ProVisitSection = () => {
           <div className="grid lg:grid-cols-2 gap-8">
             <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group">
               <CardContent className="p-8">
-                <div className="aspect-video bg-muted/30 rounded-xl mb-6 flex items-center justify-center border-2 border-dashed border-border/50">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-luxury">
-                      <span className="text-primary text-2xl">📱</span>
-                    </div>
-                    <p className="text-muted-foreground font-inter">Dashboard Screenshot</p>
-                  </div>
-                </div>
+<div className="aspect-video rounded-xl mb-6 overflow-hidden">
+  <img 
+    src="/public/provisit/visit.jpg"
+    alt="ProVisit visit Management" 
+    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+  />
+</div>
                 <h4 className="text-xl font-semibold text-accent mb-2 font-space">Visit Dashboard</h4>
                 <p className="text-muted-foreground font-inter">Comprehensive overview of all scheduled visits, engineer assignments, and client approvals</p>
               </CardContent>
@@ -196,14 +195,13 @@ const ProVisitSection = () => {
 
             <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group">
               <CardContent className="p-8">
-                <div className="aspect-video bg-muted/30 rounded-xl mb-6 flex items-center justify-center border-2 border-dashed border-border/50">
-                  <div className="text-center">
-                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-luxury">
-                      <span className="text-primary text-2xl">📋</span>
-                    </div>
-                    <p className="text-muted-foreground font-inter">Inventory Interface</p>
-                  </div>
-                </div>
+<div className="aspect-video rounded-xl mb-6 overflow-hidden">
+  <img 
+    src="/public/provisit/inventory.jpg"
+    alt="ProVisit Inventory Management" 
+    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+  />
+</div>
                 <h4 className="text-xl font-semibold text-accent mb-2 font-space">Equipment Inventory</h4>
                 <p className="text-muted-foreground font-inter">Detailed tracking of meeting room equipment with photos and specifications</p>
               </CardContent>
