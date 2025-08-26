@@ -1,7 +1,11 @@
 import React from 'react';
+import Navigation from 'src/ui/Navigation';  // prilagodi putanju
+import Footer from 'src/ui/Footer';     
 
 const PrivacyPolicy = () => {
   return (
+    <>
+      <Navigation />
     <div className="min-h-screen bg-muted/30 text-foreground">
       {/* Background Pattern - matching ProVisit */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -224,6 +228,8 @@ const PrivacyPolicy = () => {
         </div>
       </button>
     </div>
+        <Footer />
+    </>
   );
 };
 
