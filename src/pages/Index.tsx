@@ -19,8 +19,8 @@ const Index = () => {
       <div id="services">
         <Services />
       </div>
-        <div id="ProVisitSection">
-        <ProVisit />
+        <div id="provisit">
+        <ProVisitSection />
       </div>
       <div id="projects">
         <Projects />
