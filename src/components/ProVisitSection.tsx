@@ -1,41 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calendar, Users, CheckCircle, Clipboard, Camera, BarChart } from "lucide-react";
 
 const ProVisitSection = () => {
   const features = [
     {
-      icon: "📅",
+      icon: Calendar,
       title: "Smart Visit Scheduling",
       description: "Automatically schedule and coordinate client visits with location sharing and time management",
       details: ["Real-time scheduling", "Location tracking", "Time optimization", "Automated notifications"]
     },
     {
-      icon: "👷",
+      icon: Users,
       title: "Engineer Assignment", 
       description: "Assign qualified engineers to specific visits based on expertise and availability",
       details: ["Skill-based matching", "Availability tracking", "Workload balancing", "Performance metrics"]
     },
     {
-      icon: "✅",
+      icon: CheckCircle,
       title: "Client Approval System",
       description: "Clients receive detailed visit information and must approve before engineers arrive",
       details: ["Automated approvals", "Detailed notifications", "Approval tracking", "Client dashboard"]
     },
     {
-      icon: "📋",
+      icon: Clipboard,
       title: "Complete Inventory Management",
       description: "Track every piece of equipment in each meeting room with detailed specifications",
       details: ["Asset tracking", "Room mapping", "Specification logs", "Maintenance history"]
     },
     {
-      icon: "📸",
+      icon: Camera,
       title: "Visual Documentation",
       description: "Photo documentation of all equipment and room configurations for complete records",
       details: ["Photo capture", "Visual comparisons", "Change tracking", "Documentation archive"]
     },
     {
-      icon: "📊",
+      icon: BarChart,
       title: "Detailed Reporting",
       description: "Comprehensive reports on visit outcomes, equipment status, and maintenance needs",
       details: ["Performance analytics", "Status reports", "Trend analysis", "Custom dashboards"]
@@ -60,8 +61,8 @@ const ProVisitSection = () => {
     },
     {
       step: "04",
-      title: "Inventory Update",
-      description: "Real-time equipment inventory updates with photos and specifications"
+      title: "Ticket Closure",
+      description: "Closing ticket with all necessary documentation, photos and updates of inventory"
     }
   ];
 
@@ -102,7 +103,7 @@ const ProVisitSection = () => {
               <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group h-full">
                 <CardHeader className="pb-4">
                   <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-luxury">
-                    <span className="text-3xl">{feature.icon}</span>
+                    <feature.icon className="h-8 w-8 text-primary" />
                   </div>
                   <CardTitle className="text-2xl font-space font-semibold text-accent group-hover:text-gradient-gold transition-luxury">
                     {feature.title}
@@ -162,36 +163,6 @@ const ProVisitSection = () => {
           </div>
         </motion.div>
 
-        {/* Statistics Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="mb-20"
-        >
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group text-center">
-              <CardContent className="p-8">
-                <div className="text-4xl font-bold text-gradient-gold mb-2">247</div>
-                <div className="text-muted-foreground font-inter">Active Tickets</div>
-              </CardContent>
-            </Card>
-            <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group text-center">
-              <CardContent className="p-8">
-                <div className="text-4xl font-bold text-gradient-gold mb-2">98%</div>
-                <div className="text-muted-foreground font-inter">Approved Visits</div>
-              </CardContent>
-            </Card>
-            <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group text-center">
-              <CardContent className="p-8">
-                <div className="text-4xl font-bold text-gradient-gold mb-2">2.4h</div>
-                <div className="text-muted-foreground font-inter">Avg Response</div>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.div>
-
         {/* Screenshots/Demo Area */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -247,31 +218,27 @@ const ProVisitSection = () => {
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group">
-            <CardContent className="p-12 text-center">
-              <h3 className="text-2xl font-bold text-accent mb-4 font-space">
-                Streamline Your Client Visit Management
-              </h3>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto font-inter leading-relaxed">
-                ProVisit integrates seamlessly with our AV & IT infrastructure services to provide 
-                complete visibility and control over client site visits and equipment management.
-              </p>
-              <button 
-                onClick={() => {
-                  const element = document.querySelector('#contact');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group px-8 py-6 text-lg font-medium inline-flex items-center gap-3 rounded-xl"
-              >
-                Request ProVisit Demo
-                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-            </CardContent>
-          </Card>
+          <h3 className="text-2xl font-bold text-accent mb-4 font-space">
+            Streamline Your Client Visit Management
+          </h3>
+          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto font-inter leading-relaxed">
+            ProVisit integrates seamlessly with our AV & IT infrastructure services to provide 
+            complete visibility and control over client site visits and equipment management.
+          </p>
+          <button 
+            onClick={() => {
+              const element = document.querySelector('#contact');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group px-6 py-3 text-base font-medium inline-flex items-center gap-2 rounded-xl"
+          >
+            Request ProVisit Demo
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
           
           <div className="mt-8">
             <p className="text-lg text-muted-foreground mb-6 font-inter">
