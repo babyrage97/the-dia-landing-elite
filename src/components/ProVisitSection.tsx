@@ -15,7 +15,7 @@ const ProVisitSection = () => {
     },
     {
       icon: "✅",
-      title: "Client Approval System",
+      title: "Client Approval Systemm",
       description: "Clients receive detailed visit information and must approve before engineers arrive"
     },
     {
