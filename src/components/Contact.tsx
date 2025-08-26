@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -19,9 +19,52 @@ const Contact = () => {
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const selectRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const selectRef = useRef<HTMLButtonElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const { toast } = useToast();
+
+  // Detektovanje mobilnog uređaja
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const hasTouch = 'ontouchstart' in window;
+      const smallScreen = window.innerWidth < 768;
+      
+      setIsMobile(isMobileDevice && (hasTouch || smallScreen));
+    };
+
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  // Prevencija scroll-a na Android uređajima
+  useEffect(() => {
+    if (isMobile) {
+      const preventBodyScroll = (e: Event) => {
+        const target = e.target as HTMLElement;
+        if (target?.closest('[data-radix-select-content]')) {
+          document.body.style.overflow = 'hidden';
+        }
+      };
+
+      const restoreBodyScroll = () => {
+        document.body.style.overflow = '';
+      };
+
+      document.addEventListener('focusin', preventBodyScroll);
+      document.addEventListener('focusout', restoreBodyScroll);
+
+      return () => {
+        document.removeEventListener('focusin', preventBodyScroll);
+        document.removeEventListener('focusout', restoreBodyScroll);
+        document.body.style.overflow = '';
+      };
+    }
+  }, [isMobile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,16 +137,57 @@ ${formData.message}`
     }));
   };
 
-  // Android select fix
-  const handleSelectOpen = () => {
-    // Sprečava scroll kada se otvara select na Android
-    if (/Android/i.test(navigator.userAgent)) {
-      const currentScrollPos = window.pageYOffset;
-      setTimeout(() => {
-        window.scrollTo(0, currentScrollPos);
-      }, 100);
+  // Poboljšano rukovanje select otvaranjem
+  const handleSelectOpenChange = (isOpen: boolean) => {
+    if (isMobile) {
+      if (isOpen) {
+        // Sprečava scroll i čuva trenutnu poziciju
+        const scrollPos = window.pageYOffset;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${scrollPos}px`;
+        document.body.style.width = '100%';
+        
+        // Fokusira select nakon kratke pauze
+        setTimeout(() => {
+          selectRef.current?.focus();
+        }, 100);
+      } else {
+        // Vraća scroll poziciju
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
   };
+
+  // Native select za mobilne uređaje
+  const MobileSelect = () => (
+    <div className="relative">
+      <select 
+        value={formData.service} 
+        onChange={(e) => handleChange("service", e.target.value)}
+        className="w-full h-10 px-3 py-2 bg-input border border-border/50 rounded-md focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all text-sm appearance-none cursor-pointer"
+        style={{ fontSize: '16px' }} // Sprečava zoom na iOS
+      >
+        <option value="">Select a service</option>
+        <option value="zoom-rooms">Zoom Room Setup</option>
+        <option value="av-infrastructure">AV Infrastructure</option>
+        <option value="it-support">On-site IT Support</option>
+        <option value="international">International Service</option>
+        <option value="collaboration">Remote Collaboration</option>
+        <option value="provisit">ProVisit Ticket Service</option>
+        <option value="consultation">General Consultation</option>
+      </select>
+      {/* Custom arrow */}
+      <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+        <svg className="w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+  );
 
   return (
     <section className="py-24 px-4 md:px-8 bg-muted/30 relative">
@@ -144,7 +228,7 @@ ${formData.message}`
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <Label htmlFor="name" className="text-accent font-inter">Name *</Label>
@@ -153,6 +237,7 @@ ${formData.message}`
                         value={formData.name} 
                         onChange={e => handleChange("name", e.target.value)} 
                         className="bg-input border-border/50 focus:border-primary transition-luxury" 
+                        style={{ fontSize: '16px' }}
                         required 
                       />
                     </div>
@@ -164,6 +249,7 @@ ${formData.message}`
                         value={formData.email} 
                         onChange={e => handleChange("email", e.target.value)} 
                         className="bg-input border-border/50 focus:border-primary transition-luxury" 
+                        style={{ fontSize: '16px' }}
                         required 
                       />
                     </div>
@@ -176,51 +262,44 @@ ${formData.message}`
                       value={formData.company} 
                       onChange={e => handleChange("company", e.target.value)} 
                       className="bg-input border-border/50 focus:border-primary transition-luxury" 
+                      style={{ fontSize: '16px' }}
                     />
                   </div>
                   
                   <div>
                     <Label htmlFor="service" className="text-accent font-inter">Service Interest</Label>
-                    <Select 
-                      value={formData.service} 
-                      onValueChange={value => handleChange("service", value)}
-                      onOpenChange={(isOpen) => {
-                        if (isOpen) {
-                          handleSelectOpen();
-                        }
-                      }}
-                    >
-                      <SelectTrigger 
-                        ref={selectRef}
-                        className="bg-input border-border/50 focus:border-primary transition-luxury"
-                        style={{
-                          fontSize: '16px', // Sprečava zoom na iOS/Android
-                          transformOrigin: 'top left'
-                        }}
+                    {isMobile ? (
+                      <MobileSelect />
+                    ) : (
+                      <Select 
+                        value={formData.service} 
+                        onValueChange={value => handleChange("service", value)}
+                        onOpenChange={handleSelectOpenChange}
                       >
-                        <SelectValue placeholder="Select a service" />
-                      </SelectTrigger>
-                      <SelectContent
-                        position="popper"
-                        side="bottom"
-                        align="start"
-                        className="z-50 max-h-60 overflow-y-auto"
-                        onCloseAutoFocus={(e) => {
-                          // Sprečava vraćanje fokusa koji može dovesti do scroll-a
-                          if (/Android/i.test(navigator.userAgent)) {
-                            e.preventDefault();
-                          }
-                        }}
-                      >
-                        <SelectItem value="zoom-rooms">Zoom Room Setup</SelectItem>
-                        <SelectItem value="av-infrastructure">AV Infrastructure</SelectItem>
-                        <SelectItem value="it-support">On-site IT Support</SelectItem>
-                        <SelectItem value="international">International Service</SelectItem>
-                        <SelectItem value="collaboration">Remote Collaboration</SelectItem>
-                        <SelectItem value="provisit">ProVisit Ticket Service</SelectItem>
-                        <SelectItem value="consultation">General Consultation</SelectItem>
-                      </SelectContent>
-                    </Select>
+                        <SelectTrigger 
+                          ref={selectRef}
+                          className="bg-input border-border/50 focus:border-primary transition-luxury"
+                          style={{ fontSize: '16px' }}
+                        >
+                          <SelectValue placeholder="Select a service" />
+                        </SelectTrigger>
+                        <SelectContent
+                          position="popper"
+                          side="bottom"
+                          align="start"
+                          className="z-[9999] max-h-60 overflow-y-auto"
+                          sideOffset={4}
+                        >
+                          <SelectItem value="zoom-rooms">Zoom Room Setup</SelectItem>
+                          <SelectItem value="av-infrastructure">AV Infrastructure</SelectItem>
+                          <SelectItem value="it-support">On-site IT Support</SelectItem>
+                          <SelectItem value="international">International Service</SelectItem>
+                          <SelectItem value="collaboration">Remote Collaboration</SelectItem>
+                          <SelectItem value="provisit">ProVisit Ticket Service</SelectItem>
+                          <SelectItem value="consultation">General Consultation</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    )}
                   </div>
                   
                   <div>
@@ -231,8 +310,8 @@ ${formData.message}`
                       onChange={e => handleChange("message", e.target.value)} 
                       className="bg-input border-border/50 focus:border-primary transition-luxury min-h-[120px]" 
                       placeholder="Tell us about your project requirements..." 
+                      style={{ fontSize: '16px' }}
                       required 
-                      style={{ fontSize: '16px' }} // Sprečava zoom na mobile
                     />
                   </div>
                   
