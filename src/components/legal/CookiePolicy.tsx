@@ -3,7 +3,7 @@ import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Cookie, Shield, BarChart3, Target, Settings, Chrome, Firefox, Safari, Home, Mail, Phone, MapPin, AlertTriangle, CheckCircle, Lock } from "lucide-react";
+import { Cookie, Shield, BarChart3, Target, Settings, Globe, Home, Mail, Phone, MapPin, AlertTriangle, CheckCircle, Lock } from "lucide-react";
 
 const CookiePolicy = () => {
   return (
@@ -240,13 +240,13 @@ const CookiePolicy = () => {
                     <div className="space-y-4">
                       <div className="p-4 bg-muted/20 rounded-lg border border-border/30">
                         <h4 className="font-medium mb-2 flex items-center gap-2 font-space">
-                          <Chrome className="w-4 h-4 text-primary" /> Google Chrome
+                          <Globe className="w-4 h-4 text-primary" /> Google Chrome
                         </h4>
                         <p className="text-muted-foreground text-sm font-inter">Settings → Privacy and Security → Cookies</p>
                       </div>
                       <div className="p-4 bg-muted/20 rounded-lg border border-border/30">
                         <h4 className="font-medium mb-2 flex items-center gap-2 font-space">
-                          <Firefox className="w-4 h-4 text-secondary" /> Mozilla Firefox
+                          <Globe className="w-4 h-4 text-secondary" /> Mozilla Firefox
                         </h4>
                         <p className="text-muted-foreground text-sm font-inter">Preferences → Privacy & Security → Cookies</p>
                       </div>
@@ -254,7 +254,7 @@ const CookiePolicy = () => {
                     <div className="space-y-4">
                       <div className="p-4 bg-muted/20 rounded-lg border border-border/30">
                         <h4 className="font-medium mb-2 flex items-center gap-2 font-space">
-                          <Safari className="w-4 h-4 text-accent" /> Safari
+                          <Globe className="w-4 h-4 text-accent" /> Safari
                         </h4>
                         <p className="text-muted-foreground text-sm font-inter">Preferences → Privacy → Cookies</p>
                       </div>
