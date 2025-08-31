@@ -1,9 +1,75 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calendar, Users, CheckCircle, Clipboard, Camera, BarChart } from "lucide-react";
+import { Calendar, Users, CheckCircle, Clipboard, Camera, BarChart, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const ProVisitSection = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentGallery, setCurrentGallery] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Gallery images data
+  const galleries = {
+    visits: [
+      { src: "/provisit/visits.jpg", alt: "Visit Dashboard Overview" },
+      { src: "/provisit/visit-scheduling.jpg", alt: "Visit Scheduling Interface" },
+      { src: "/provisit/engineer-assignment.jpg", alt: "Engineer Assignment Panel" },
+      { src: "/provisit/client-approval.jpg", alt: "Client Approval System" },
+      { src: "/provisit/visit-timeline.jpg", alt: "Visit Timeline View" }
+    ],
+    inventory: [
+      { src: "/provisit/inventory.jpg", alt: "Equipment Inventory Dashboard" },
+      { src: "/provisit/room-layout.jpg", alt: "Room Layout Management" },
+      { src: "/provisit/equipment-details.jpg", alt: "Equipment Details View" },
+      { src: "/provisit/photo-documentation.jpg", alt: "Photo Documentation" },
+      { src: "/provisit/maintenance-tracking.jpg", alt: "Maintenance Tracking" }
+    ]
+  };
+
+  const openModal = (gallery, index = 0) => {
+    setCurrentGallery(gallery);
+    setCurrentImageIndex(index);
+    setModalOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    setCurrentGallery('');
+    setCurrentImageIndex(0);
+    document.body.style.overflow = 'unset';
+  };
+
+  const nextImage = () => {
+    if (currentGallery && galleries[currentGallery]) {
+      setCurrentImageIndex((prev) => 
+        prev === galleries[currentGallery].length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (currentGallery && galleries[currentGallery]) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? galleries[currentGallery].length - 1 : prev - 1
+      );
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  };
+
+  // Add keyboard event listeners
+  React.useEffect(() => {
+    if (modalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [modalOpen, currentGallery]);
+
   const features = [
     {
       icon: Calendar,
@@ -179,29 +245,45 @@ const ProVisitSection = () => {
           </h3>
           
           <div className="grid lg:grid-cols-2 gap-8">
-            <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group">
+            <Card 
+              className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group cursor-pointer"
+              onClick={() => openModal('visits')}
+            >
               <CardContent className="p-8">
-<div className="aspect-video rounded-xl mb-6 overflow-hidden">
-  <img 
-    src="/provisit/visits.jpg"
-    alt="ProVisit visit Management" 
-    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-  />
-</div>
+                <div className="aspect-video rounded-xl mb-6 overflow-hidden relative group">
+                  <img 
+                    src="/provisit/visits.jpg"
+                    alt="ProVisit visit Management" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <Camera className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                </div>
                 <h4 className="text-xl font-semibold text-accent mb-2 font-space">Visit Dashboard</h4>
                 <p className="text-muted-foreground font-inter">Comprehensive overview of all scheduled visits, engineer assignments, and client approvals</p>
               </CardContent>
             </Card>
 
-            <Card className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group">
+            <Card 
+              className="card-gradient border-border/50 hover:border-primary/20 transition-luxury shadow-card hover:shadow-luxury group cursor-pointer"
+              onClick={() => openModal('inventory')}
+            >
               <CardContent className="p-8">
-<div className="aspect-video rounded-xl mb-6 overflow-hidden">
-  <img 
-    src="/provisit/inventory.jpg"
-    alt="ProVisit Inventory Management" 
-    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-  />
-</div>
+                <div className="aspect-video rounded-xl mb-6 overflow-hidden relative group">
+                  <img 
+                    src="/provisit/inventory.jpg"
+                    alt="ProVisit Inventory Management" 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <Camera className="h-6 w-6 text-white" />
+                    </div>
+                  </div>
+                </div>
                 <h4 className="text-xl font-semibold text-accent mb-2 font-space">Equipment Inventory</h4>
                 <p className="text-muted-foreground font-inter">Detailed tracking of meeting room equipment with photos and specifications</p>
               </CardContent>
@@ -247,6 +329,93 @@ const ProVisitSection = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Image Modal */}
+      {modalOpen && currentGallery && galleries[currentGallery] && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="relative w-full max-w-6xl max-h-[90vh] flex flex-col">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between mb-4 text-white">
+              <div className="flex items-center gap-4">
+                <h3 className="text-xl font-space font-semibold">
+                  {currentGallery === 'visits' ? 'Visit Management' : 'Equipment Inventory'}
+                </h3>
+                <span className="text-muted-foreground">
+                  {currentImageIndex + 1} / {galleries[currentGallery].length}
+                </span>
+              </div>
+              <button 
+                onClick={closeModal}
+                className="p-2 hover:bg-white/10 rounded-full transition-colors"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Image Container */}
+            <div className="relative flex-1 flex items-center justify-center">
+              <img 
+                src={galleries[currentGallery][currentImageIndex].src}
+                alt={galleries[currentGallery][currentImageIndex].alt}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              />
+
+              {/* Navigation Buttons */}
+              {galleries[currentGallery].length > 1 && (
+                <>
+                  <button 
+                    onClick={prevImage}
+                    className="absolute left-4 p-3 bg-black/50 hover:bg-black/70 rounded-full transition-colors text-white"
+                  >
+                    <ChevronLeft className="h-6 w-6" />
+                  </button>
+                  <button 
+                    onClick={nextImage}
+                    className="absolute right-4 p-3 bg-black/50 hover:bg-black/70 rounded-full transition-colors text-white"
+                  >
+                    <ChevronRight className="h-6 w-6" />
+                  </button>
+                </>
+              )}
+            </div>
+
+            {/* Image Title */}
+            <div className="mt-4 text-center">
+              <p className="text-white font-inter text-lg">
+                {galleries[currentGallery][currentImageIndex].alt}
+              </p>
+            </div>
+
+            {/* Thumbnail Navigation */}
+            {galleries[currentGallery].length > 1 && (
+              <div className="flex justify-center mt-6 gap-2 overflow-x-auto pb-2">
+                {galleries[currentGallery].map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === currentImageIndex 
+                        ? 'border-primary shadow-lg' 
+                        : 'border-white/20 hover:border-white/40'
+                    }`}
+                  >
+                    <img 
+                      src={image.src} 
+                      alt={image.alt}
+                      className="w-full h-full object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Instructions */}
+            <div className="mt-4 text-center text-white/60 text-sm font-inter">
+              <p>Use arrow keys or click navigation buttons • Press ESC to close</p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
