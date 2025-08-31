@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Mail, Phone, MapPin, Send, Clock } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Mail, Phone, MapPin, Send, Clock, Shield, RefreshCw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 
@@ -20,10 +21,61 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isNotRobot, setIsNotRobot] = useState(false);
+  
+  // CAPTCHA state
+  const [captcha, setCaptcha] = useState({
+    question: "",
+    answer: 0,
+    userAnswer: "",
+    isValid: false
+  });
+
   const selectRef = useRef<HTMLButtonElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const { toast } = useToast();
+
+  // Generiši novi CAPTCHA
+  const generateCaptcha = () => {
+    const operations = ['+', '-', '*'];
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+    
+    let num1, num2, answer, question;
+    
+    switch (operation) {
+      case '+':
+        num1 = Math.floor(Math.random() * 20) + 1;
+        num2 = Math.floor(Math.random() * 20) + 1;
+        answer = num1 + num2;
+        question = `${num1} + ${num2} = ?`;
+        break;
+      case '-':
+        num1 = Math.floor(Math.random() * 20) + 10;
+        num2 = Math.floor(Math.random() * 10) + 1;
+        answer = num1 - num2;
+        question = `${num1} - ${num2} = ?`;
+        break;
+      case '*':
+        num1 = Math.floor(Math.random() * 9) + 1;
+        num2 = Math.floor(Math.random() * 9) + 1;
+        answer = num1 * num2;
+        question = `${num1} × ${num2} = ?`;
+        break;
+      default:
+        num1 = 5;
+        num2 = 3;
+        answer = 8;
+        question = "5 + 3 = ?";
+    }
+
+    setCaptcha({
+      question,
+      answer,
+      userAnswer: "",
+      isValid: false
+    });
+  };
 
   // Detektovanje mobilnog uređaja
   useEffect(() => {
@@ -39,6 +91,11 @@ const Contact = () => {
     window.addEventListener('resize', checkIsMobile);
     
     return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  // Generiši CAPTCHA na početku
+  useEffect(() => {
+    generateCaptcha();
   }, []);
 
   // Prevencija scroll-a na Android uređajima
@@ -66,14 +123,54 @@ const Contact = () => {
     }
   }, [isMobile]);
 
+  // Validacija CAPTCHA-a
+  const validateCaptcha = (userInput: string) => {
+    const isValid = parseInt(userInput) === captcha.answer;
+    setCaptcha(prev => ({ ...prev, isValid }));
+    return isValid;
+  };
+
+  const handleCaptchaChange = (value: string) => {
+    setCaptcha(prev => ({ ...prev, userAnswer: value }));
+    validateCaptcha(value);
+  };
+
+  const refreshCaptcha = () => {
+    generateCaptcha();
+    toast({
+      title: "Nova slagalica",
+      description: "Generiš je nova sigurnosna slagalica."
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields (Name, Email, Message).",
+        title: "Nedostaju informacije",
+        description: "Molimo popunite sva obavezna polja (Ime, Email, Poruku).",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // CAPTCHA validation
+    if (!captcha.isValid) {
+      toast({
+        title: "Neispravna slagalica",
+        description: "Molimo tačno rešite sigurnosnu slagalicu.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Robot check validation
+    if (!isNotRobot) {
+      toast({
+        title: "Sigurnosna provera",
+        description: "Molimo potvrdite da niste robot.",
         variant: "destructive"
       });
       return;
@@ -94,7 +191,9 @@ const Contact = () => {
 Service Interest: ${formData.service || 'Not specified'}
 
 Message:
-${formData.message}`
+${formData.message}`,
+          captchaAnswer: captcha.userAnswer,
+          expectedAnswer: captcha.answer // Server treba da validira ovo
         }),
       });
 
@@ -102,8 +201,8 @@ ${formData.message}`
 
       if (data.success) {
         toast({
-          title: "Message Sent! ✅",
-          description: "Thank you for your inquiry. We'll respond within 24 hours."
+          title: "Poruka poslata! ✅",
+          description: "Hvala na upitu. Odgovorićemo u roku od 24 sata."
         });
         
         // Reset form
@@ -114,6 +213,8 @@ ${formData.message}`
           service: "",
           message: ""
         });
+        setIsNotRobot(false);
+        generateCaptcha(); // Nova slagalica
       } else {
         throw new Error(data.error || 'Failed to send message');
       }
@@ -121,8 +222,8 @@ ${formData.message}`
     } catch (error) {
       console.error('Contact form error:', error);
       toast({
-        title: "Error Sending Message",
-        description: "Something went wrong. Please try again or contact us directly.",
+        title: "Greška pri slanju",
+        description: "Nešto je pošlo po zlu. Molimo pokušajte ponovo.",
         variant: "destructive"
       });
     } finally {
@@ -314,14 +415,79 @@ ${formData.message}`
                       required 
                     />
                   </div>
+
+                  {/* CAPTCHA Slagalica */}
+                  <div className="space-y-4">
+                    <div className="border border-border/50 rounded-lg p-4 bg-card/50">
+                      <div className="flex items-center justify-between mb-3">
+                        <Label className="text-accent font-inter flex items-center gap-2">
+                          <Shield className="h-4 w-4" />
+                          Sigurnosna slagalica *
+                        </Label>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={refreshCaptcha}
+                          className="h-8 w-8 p-0"
+                        >
+                          <RefreshCw className="h-4 w-4" />
+                        </Button>
+                      </div>
+                      
+                      <div className="flex items-center gap-4">
+                        <div className="flex-1">
+                          <div className="bg-primary/10 rounded-md px-3 py-2 font-mono text-lg font-bold text-center">
+                            {captcha.question}
+                          </div>
+                        </div>
+                        <Input
+                          type="number"
+                          placeholder="Odgovor"
+                          value={captcha.userAnswer}
+                          onChange={e => handleCaptchaChange(e.target.value)}
+                          className={`w-20 text-center ${
+                            captcha.userAnswer && (captcha.isValid ? 'border-green-500' : 'border-red-500')
+                          }`}
+                          style={{ fontSize: '16px' }}
+                          required
+                        />
+                      </div>
+                      
+                      {captcha.userAnswer && !captcha.isValid && (
+                        <p className="text-red-500 text-sm mt-2">Netačan odgovor. Pokušajte ponovo.</p>
+                      )}
+                      
+                      {captcha.isValid && (
+                        <p className="text-green-500 text-sm mt-2">✓ Tačno!</p>
+                      )}
+                    </div>
+
+                    {/* "Nisam robot" checkbox */}
+                    <div className="flex items-center space-x-3 p-4 border border-border/50 rounded-lg bg-card/50">
+                      <Checkbox 
+                        id="not-robot"
+                        checked={isNotRobot}
+                        onCheckedChange={setIsNotRobot}
+                        className="data-[state=checked]:bg-primary data-[state=checked]:border-primary"
+                      />
+                      <Label 
+                        htmlFor="not-robot" 
+                        className="text-sm font-inter cursor-pointer flex items-center gap-2"
+                      >
+                        <Shield className="h-4 w-4 text-primary" />
+                        Nisam robot
+                      </Label>
+                    </div>
+                  </div>
                   
                   <Button 
                     type="submit" 
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !captcha.isValid || !isNotRobot}
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-luxury transition-luxury group disabled:opacity-50" 
                     size="lg"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    {isSubmitting ? 'Šalje se...' : 'Pošalji poruku'}
                     <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </form>
